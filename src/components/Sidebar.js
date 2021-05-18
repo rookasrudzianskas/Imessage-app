@@ -13,13 +13,13 @@ const Sidebar = () => {
         <div className="sidebar">
 
             <div className="sidebar__header">
-                <Avatar />
+                <Avatar className="sidebar__avatar" />
                 <div className="sidebar__input">
                     <SearchIcon />
                     <input type="text" placeholder="Search"/>
                 </div>
 
-                <IconButton>
+                <IconButton className="sidebar__inputButton" variant="outlined">
                     <RateReviewOutlined />
                 </IconButton>
 
