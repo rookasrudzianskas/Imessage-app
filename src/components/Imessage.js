@@ -8,8 +8,6 @@ const Imessage = () => {
         <div className="imessage">
             <Sidebar />
             <Chat />
-        {/*    sidebar*/}
-        {/*    chat*/}
         </div>
     );
 };
