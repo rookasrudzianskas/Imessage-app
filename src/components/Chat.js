@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import "./styles/Chat.css";
 import {MicNoneOutlined} from "@material-ui/icons";
 import {IconButton} from "@material-ui/core";
+import Message from "./Message";
 
 const Chat = () => {
     // to keep the input
@@ -24,13 +25,10 @@ const Chat = () => {
         {/*    chat messages    */}
 
             <div className="chat__messages">
-                <h2>I am the message</h2>
-                <h2>I am the message</h2>
-                <h2>I am the message</h2>
-                <h2>I am the message</h2>
-                <h2>I am the message</h2>
-                <h2>I am the message</h2>
-                <h2>I am the message</h2>
+                <Message />
+                <Message />
+                <Message />
+                <Message />
             </div>
         {/*    chat input   */}
             <div className="chat__input">
