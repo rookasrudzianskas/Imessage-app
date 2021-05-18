@@ -1,11 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import Imessage from "./components/Imessage"
 import Login from "./components/Login"
-import {useSelector} from "react-redux";
-import {selectUser} from "./features/useSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {auth} from "./firebase";
+import { selectUser, login, logout} from "./features/useSlice";
 
 function App() {
+    // making the gun to shoot the info to the data layer
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+    //    fire om then the user auth changed
+        auth.onAuthStateChanged(authUser => {
+            if(authUser) {
+                // user is logged in
+
+            } else {
+                // user is logged out
+            }
+        })
+
+    }, []);
     //this pulls the user from redux
     const user = useSelector(selectUser);
   return (
