@@ -6,6 +6,7 @@ import Message from "./Message";
 import {useSelector} from "react-redux";
 import {selectChatId, selectChatName} from "../features/chatSlice";
 import db from "../firebase";
+import firebase from "firebase";
 
 const Chat = () => {
     // to keep the input
@@ -35,6 +36,12 @@ const Chat = () => {
     const sendMessage =(e) => {
         e.preventDefault();
     //      firebase magic in here
+
+        db.collection("chats").doc(chatId).collection("messages").add({
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            message: input,
+
+        })
 
         setInput("");
     };
