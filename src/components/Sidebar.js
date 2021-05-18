@@ -18,7 +18,7 @@ const Sidebar = () => {
     const [chats, setChats] = useState([]);
 
     useEffect(() => {
-        // listents to the database
+        // listens to the database
         db.collection('chats').onSnapshot((snapshot) => (
             // we go into the collection chats, take a snapshot and pull that object with data to the array of objects in chat state
             setChats(snapshot.docs.map(doc => ({

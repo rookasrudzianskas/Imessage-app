@@ -7,9 +7,11 @@ import {useSelector} from "react-redux";
 import {selectChatId, selectChatName} from "../features/chatSlice";
 import db from "../firebase";
 import firebase from "firebase";
+import {selectUser} from "../features/useSlice";
 
 const Chat = () => {
     // to keep the input
+    const user = useSelector(selectUser);
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([]);
     const chatName = useSelector(selectChatName);
@@ -26,7 +28,7 @@ const Chat = () => {
                 setMessages(snapshot.docs.map(doc => ({
                     id: doc.id,
                     data: doc.data(),
-                })))
+                })));
             })
 
         }
@@ -38,10 +40,14 @@ const Chat = () => {
     //      firebase magic in here
 
         db.collection("chats").doc(chatId).collection("messages").add({
+            // sets all the data
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             message: input,
-
-        })
+            uid: user.uid,
+            photo: user.photo,
+            email: user.email,
+            displayName: user.displayName,
+        });
 
         setInput("");
     };
@@ -60,7 +66,7 @@ const Chat = () => {
                 {messages.map(({id, data}) => (
                     <Message key={id} contents={data} />
                 ))}
-            {/*    also passess propsl and content*/}
+            {/*    also passes props and content*/}
 
             </div>
         {/*    chat input   */}
