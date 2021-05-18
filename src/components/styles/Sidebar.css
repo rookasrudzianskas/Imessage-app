@@ -35,3 +35,11 @@
     outline: 0;
     padding: 10px;
 }
+
+.sidebar__chats {
+    overflow: scroll;
+}
+
+.sidebar__chats::-webkit-scrollbar {
+    display: none;
+}

@@ -11,3 +11,15 @@
     color: white;
     transition: 0.2s;
 }
+
+.sidebarChat__info {
+    margin-left: 15px;
+    position: relative;
+    width: 100%;
+}
+
+.sidebarChat__info > small {
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
