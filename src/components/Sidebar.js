@@ -26,7 +26,7 @@ const Sidebar = () => {
             </div>
 
             <div className="sidebar__chats">
-
+                <SidebarChat />
             </div>
         </div>
     );
