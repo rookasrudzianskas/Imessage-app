@@ -6,6 +6,7 @@ import {RateReviewOutlined} from "@material-ui/icons";
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import {Tooltip, TextField, Button, IconButton} from "@material-ui/core";
+import SidebarChat from "./SidebarChat";
 
 
 const Sidebar = () => {
