@@ -15,9 +15,17 @@ function App() {
         auth.onAuthStateChanged(authUser => {
             if(authUser) {
                 // user is logged in
-
+                dispatch(login({
+                    // setting from what comes from the google
+                    uid: authUser.uid,
+                    photo: authUser.photoURL,
+                    email: authUser.email,
+                    displayName: authUser.displayName,
+                }))
             } else {
                 // user is logged out
+                // we are dispatching an action, to make the user null in the data layer
+                dispatch(logout())
             }
         })
 
