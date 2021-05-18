@@ -4,7 +4,7 @@ import {Avatar} from "@material-ui/core";
 import {useDispatch} from "react-redux";
 import { setChat } from "../features/chatSlice";
 import db from "../firebase";
-
+import * as timeago from "timeago.js"
 const SidebarChat = ({id, chatName}) => {
 
     const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const SidebarChat = ({id, chatName}) => {
                 <h3>{chatName}</h3>
                 <p>{chatInfo[0]?.message}</p>
                 {!chatInfo.timestamp ? (
-                <small>{new Date(chatInfo[0]?.timestamp?.toDate()).toLocaleString()}</small>
+                <small>{timeago.format(new Date(chatInfo[0]?.timestamp?.toDate()).toLocaleString())}</small>
                 ) : (
                     <small>No chats</small>
                 )}
