@@ -1,9 +1,33 @@
 import React from 'react';
-import "./styles/Sidebar.css"
+import "./styles/Sidebar.css";
+import Avatar from "@material-ui/core/Avatar";
+import SearchIcon from "@material-ui/icons/Search";
+import {RateReviewOutlined} from "@material-ui/icons";
+import Modal from "@material-ui/core/Modal";
+import Fade from "@material-ui/core/Fade";
+import {Tooltip, TextField, Button, IconButton} from "@material-ui/core";
+
+
 const Sidebar = () => {
     return (
         <div className="sidebar">
-            <h1>Sidebar</h1>
+
+            <div className="sidebar__header">
+                <Avatar />
+                <div className="sidebar__input">
+                    <SearchIcon />
+                    <input type="text" placeholder="Search"/>
+                </div>
+
+                <IconButton>
+                    <RateReviewOutlined />
+                </IconButton>
+
+            </div>
+
+            <div className="sidebar__chats">
+
+            </div>
         </div>
     );
 };
