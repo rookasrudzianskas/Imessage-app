@@ -1,14 +1,35 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./styles/Chat.css";
 import {MicNoneOutlined} from "@material-ui/icons";
 import {IconButton} from "@material-ui/core";
 import Message from "./Message";
+import {useSelector} from "react-redux";
+import {selectChatId, selectChatName} from "../features/chatSlice";
+import db from "../firebase";
 
 const Chat = () => {
     // to keep the input
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([]);
+    const chatName = useSelector(selectChatName);
 
+    const chatId = useSelector(selectChatId);
+
+    useEffect(() => {
+        // run once chat id changes
+        if(chatId) {
+            // if there is a change in chat id this fires up, and this if goes to true
+            // we are going to particulat chat id, and accessing that chat id collection messages
+            db.collection('chats').doc(chatId).collection("messages").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+                // this sets each message to the messages state, by mapping per each one
+                setMessages(snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    data: doc.data(),
+                })))
+            })
+
+        }
+    }, [chatId])
 
     // console.log(input)
     const sendMessage =(e) => {
@@ -22,16 +43,18 @@ const Chat = () => {
         <div className="chat">
         {/*    chat header  */}
             <div className="chat__header">
-                <h4>To: <span className="chat__name">Channel Name</span></h4>
+                <h4>To: <span className="chat__name">{chatName}</span></h4>
                 <strong>Details</strong>
             </div>
         {/*    chat messages    */}
 
             <div className="chat__messages">
-                <Message />
-                <Message />
-                <Message />
-                <Message />
+                {/* goes per all the messages, and displays each one*/}
+                {messages.map(({id, data}) => (
+                    <Message key={id} contents={data} />
+                ))}
+            {/*    also passess propsl and content*/}
+
             </div>
         {/*    chat input   */}
             <div className="chat__input">
